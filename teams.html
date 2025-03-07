@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teams - KCA Christian Union</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <h2>KCA Christian Union</h2>
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="../index.html">
+                        <i class="fas fa-home"></i> 
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="teams.html">
+                        <i class="fas fa-users"></i> 
+                        <span>Teams</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="events.html">
+                        <i class="fas fa-calendar"></i> 
+                        <span>Events</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="fundraising.html">
+                        <i class="fas fa-hand-holding-heart"></i> 
+                        <span>Fundraising</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="messages.html">
+                        <i class="fas fa-envelope"></i> 
+                        <span>Messages</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header">
+                <h1>Ministry Teams</h1>
+                <button class="btn-primary" onclick="showModal('createTeamModal')">
+                    <i class="fas fa-plus"></i> Create New Team
+                </button>
+            </div>
+
+            <!-- Teams Grid -->
+            <div class="teams-grid">
+                <!-- Praise & Worship Team -->
+                <div class="team-card">
+                    <div class="team-header">
+                        <i class="fas fa-music"></i>
+                        <h3>Praise & Worship</h3>
+                    </div>
+                    <div class="team-info">
+                        <p><i class="fas fa-users"></i> Members: <span>25</span></p>
+                        <p><i class="fas fa-user-tie"></i> Leader: John Doe</p>
+                    </div>
+                    <div class="team-description">
+                        Lead worship sessions and musical ministry.
+                    </div>
+                    <div class="team-actions">
+                        <button class="btn-join">Join Team</button>
+                        <button class="btn-view-members">View Members</button>
+                    </div>
+                </div>
+
+                <!-- Ushering Team -->
+                <div class="team-card">
+                    <div class="team-header">
+                        <i class="fas fa-hands-helping"></i>
+                        <h3>Ushering</h3>
+                    </div>
+                    <div class="team-info">
+                        <p><i class="fas fa-users"></i> Members: <span>15</span></p>
+                        <p><i class="fas fa-user-tie"></i> Leader: Jane Smith</p>
+                    </div>
+                    <div class="team-description">
+                        Welcome and guide members during services.
+                    </div>
+                    <div class="team-actions">
+                        <button class="btn-join">Join Team</button>
+                        <button class="btn-view-members">View Members</button>
+                    </div>
+                </div>
+
+                <!-- Media Team -->
+                <div class="team-card">
+                    <div class="team-header">
+                        <i class="fas fa-camera"></i>
+                        <h3>Media</h3>
+                    </div>
+                    <div class="team-info">
+                        <p><i class="fas fa-users"></i> Members: <span>10</span></p>
+                        <p><i class="fas fa-user-tie"></i> Leader: Mike Johnson</p>
+                    </div>
+                    <div class="team-description">
+                        Handle photography, video, and sound systems.
+                    </div>
+                    <div class="team-actions">
+                        <button class="btn-join">Join Team</button>
+                        <button class="btn-view-members">View Members</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Create Team Modal -->
+    <div id="createTeamModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Create New Team</h2>
+            <form id="createTeamForm">
+                <div class="form-group">
+                    <label for="teamName">Team Name</label>
+                    <input type="text" id="teamName" required>
+                </div>
+                <div class="form-group">
+                    <label for="teamDescription">Description</label>
+                    <textarea id="teamDescription" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="teamCategory">Category</label>
+                    <select id="teamCategory" required>
+                        <option value="ministry">Ministry</option>
+                        <option value="outreach">Outreach</option>
+                        <option value="fellowship">Fellowship</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary">Create Team</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/teams.js"></script>
+    <!-- Add to your HTML files (e.g., index.html, dashboard.html, etc.) -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  // Initialize Supabase client
+  const supabaseUrl = 'YOUR_SUPABASE_PROJECT_URL'
+  const supabaseAnonKey = 'YOUR_SUPABASE_ANON_KEY'
+  const supabase = supabase.createClient(supabaseUrl, supabaseAnonKey)
+</script>
+</body>
+</html> 
