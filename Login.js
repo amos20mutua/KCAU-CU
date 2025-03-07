@@ -14,13 +14,12 @@ export default function Login() {
     e.preventDefault()
     setLoading(true)
 
-    try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email: formData.email,
-        password: formData.password
-      })
-
-      if (error) throw error
+    
+      // //const { error } = await supabase.auth.signInWithPassword({
+      //   email: formData.email,
+      //   password: formData.password
+      // })
+      // if (error) throw erroR//
 
       navigate('/dashboard')
     } catch (error) {
