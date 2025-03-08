@@ -1,73 +1,230 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - KCA Christian Union</title>
-    <style>
-        .dashboard-container {
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-        .btn {
-            padding: 8px 16px;
-            background: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .btn:hover {
-            background: #0056b3;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <div class="dashboard-container">
-        <div class="header">
-            <h1>Welcome to KCA Christian Union</h1>
-            <button class="btn" onclick="handleLogout()">Logout</button>
-        </div>
-        
-        <!-- Add your dashboard content here -->
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <h2>KCA Christian Union</h2>
+            </div>
+            <ul class="nav-links">
+                <li class="active">
+                    <a href="dashboard.html">
+                        <i class="fas fa-home"></i> 
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="teams.html">
+                        <i class="fas fa-users"></i> 
+                        <span>Teams</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="events.html">
+                        <i class="fas fa-calendar"></i> 
+                        <span>Events</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="fundraising.html">
+                        <i class="fas fa-hand-holding-heart"></i> 
+                        <span>Fundraising</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="messages.html">
+                        <i class="fas fa-envelope"></i> 
+                        <span>Messages</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <a href="#" onclick="handleLogout()" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header">
+                <h1>KCA Christian Union Overview</h1>
+            </div>
+            
+            <!-- Key Statistics -->
+            <div class="stats-grid">
+                <div class="stats-card">
+                    <div class="stats-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stats-info">
+                        <h3>Total Members</h3>
+                        <p>150</p>
+                        <small>Active members</small>
+                    </div>
+                </div>
+
+                <div class="stats-card">
+                    <div class="stats-icon">
+                        <i class="fas fa-church"></i>
+                    </div>
+                    <div class="stats-info">
+                        <h3>Ministry Teams</h3>
+                        <p>5</p>
+                        <small>Active teams</small>
+                    </div>
+                </div>
+
+                <div class="stats-card">
+                    <div class="stats-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <div class="stats-info">
+                        <h3>Total Contributions</h3>
+                        <p>KES 75,000</p>
+                        <small>This month</small>
+                    </div>
+                </div>
+
+                <div class="stats-card">
+                    <div class="stats-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stats-info">
+                        <h3>Upcoming Events</h3>
+                        <p>3</p>
+                        <small>Next 7 days</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activities and Upcoming Events -->
+            <div class="dashboard-grid">
+                <!-- Recent Activities -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-clock"></i> Recent Activities</h2>
+                    </div>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-pray"></i>
+                            </div>
+                            <div class="activity-details">
+                                <h4>Sunday Service</h4>
+                                <p>Great turnout with 120 attendees</p>
+                                <small>Yesterday</small>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="activity-details">
+                                <h4>New Team Members</h4>
+                                <p>5 new members joined Praise & Worship</p>
+                                <small>2 days ago</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upcoming Events -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-calendar"></i> Upcoming Events</h2>
+                    </div>
+                    <div class="events-list">
+                        <div class="event-item">
+                            <div class="event-date">
+                                <span class="day">15</span>
+                                <span class="month">MAR</span>
+                            </div>
+                            <div class="event-details">
+                                <h4>Bible Study</h4>
+                                <p><i class="fas fa-clock"></i> 5:00 PM</p>
+                                <p><i class="fas fa-location-dot"></i> Room 204</p>
+                            </div>
+                        </div>
+                        <div class="event-item">
+                            <div class="event-date">
+                                <span class="day">17</span>
+                                <span class="month">MAR</span>
+                            </div>
+                            <div class="event-details">
+                                <h4>Prayer Meeting</h4>
+                                <p><i class="fas fa-clock"></i> 6:00 PM</p>
+                                <p><i class="fas fa-location-dot"></i> Chapel</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Fundraising Campaigns -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-hand-holding-heart"></i> Active Fundraising Campaigns</h2>
+                </div>
+                <div class="campaigns-list">
+                    <div class="campaign-item">
+                        <h4>Mission Trip 2024</h4>
+                        <div class="progress-container">
+                            <div class="progress-stats">
+                                <span>KES 50,000 of KES 100,000</span>
+                                <span>50%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 50%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Performance -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-chart-line"></i> Team Activity</h2>
+                </div>
+                <div class="teams-grid">
+                    <div class="team-activity">
+                        <h4>Praise & Worship</h4>
+                        <p>25 active members</p>
+                        <div class="activity-indicator high">High Activity</div>
+                    </div>
+                    <div class="team-activity">
+                        <h4>Ushering</h4>
+                        <p>15 active members</p>
+                        <div class="activity-indicator medium">Medium Activity</div>
+                    </div>
+                    <div class="team-activity">
+                        <h4>Media</h4>
+                        <p>10 active members</p>
+                        <div class="activity-indicator high">High Activity</div>
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
 
-    <!-- Load Supabase JS -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    
-    <script>
-        // Initialize Supabase client
-        const supabaseClient = supabase.createClient(
-            'https://qmmwikoyptgkheztrwjn.supabase.co',
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFtbXdpa295cHRna2hlenRyd2puIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDEzODAyMTgsImV4cCI6MjA1Njk1NjIxOH0.-InUlGihCe9Z-pTSFdPr98UX6lTVIuQ2mVMrLDb9lY4'
-        );
-
-        // Handle logout
-        async function handleLogout() {
-            try {
-                const { error } = await supabaseClient.auth.signOut();
-                if (error) throw error;
-                window.location.href = 'index.html';
-            } catch (error) {
-                console.error('Error logging out:', error);
-            }
-        }
-
-        // Check if user is authenticated
-        async function checkAuth() {
-            const { data: { session } } = await supabaseClient.auth.getSession();
-            if (!session) {
-                window.location.href = 'index.html';
-            }
-        }
-
-        // Check auth status when page loads
-        checkAuth();
-    </script>
+    <script src="../js/dashboard.js"></script>
+    <!-- Add to your HTML files (e.g., index.html, dashboard.html, etc.) -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  // Initialize Supabase client
+  const supabaseUrl = 'YOUR_SUPABASE_PROJECT_URL'
+  const supabaseAnonKey = 'YOUR_SUPABASE_ANON_KEY'
+  const supabase = supabase.createClient(supabaseUrl, supabaseAnonKey)
+</script>
 </body>
 </html> 
