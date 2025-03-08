@@ -13,6 +13,7 @@
             padding: 20px;
             border: 1px solid #ddd;
             border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         .form-group {
             margin-bottom: 15px;
@@ -26,8 +27,9 @@
             padding: 8px;
             border: 1px solid #ddd;
             border-radius: 4px;
+            box-sizing: border-box;
         }
-        button {
+        .btn {
             width: 100%;
             padding: 10px;
             background: #007bff;
@@ -35,10 +37,15 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background: #0056b3;
         }
         .error-message {
             color: red;
             margin-top: 10px;
+            text-align: center;
         }
         .logo {
             text-align: center;
@@ -48,14 +55,24 @@
             color: #007bff;
             margin: 0;
         }
+        #logoutBtn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: auto;
+            padding: 8px 16px;
+            display: none; /* Hidden by default */
+        }
     </style>
 </head>
 <body class="login-page">
-    <div class="auth-container">
+    <button id="logoutBtn" class="btn" onclick="handleLogout()">Logout</button>
+
+    <div class="auth-container" id="loginForm">
         <div class="logo">
             <h1>KCA Christian Union</h1>
         </div>
-        <form id="loginForm">
+        <form onsubmit="handleLogin(event)">
             <h2>Login</h2>
             
             <div class="form-group">
@@ -68,7 +85,7 @@
                 <input type="password" id="password" required>
             </div>
 
-            <button type="submit">Login</button>
+            <button type="submit" class="btn">Login</button>
             <div id="errorMessage" class="error-message"></div>
         </form>
         <p class="register-link">
@@ -86,50 +103,68 @@
         );
 
         // Handle login
-        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+        async function handleLogin(e) {
             e.preventDefault();
-            console.log('Login form submitted');
-            
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const errorMessage = document.getElementById('errorMessage');
 
-            console.log('Attempting login with email:', email);
-
             try {
                 const { data, error } = await supabaseClient.auth.signInWithPassword({
-                    email: email,
-                    password: password
+                    email,
+                    password
                 });
-
-                console.log('Login response:', { data, error });
 
                 if (error) {
                     errorMessage.textContent = error.message;
-                    console.error('Login error:', error);
                 } else {
-                    console.log('Login successful, redirecting...');
+                    // Redirect to dashboard on successful login
                     window.location.href = 'dashboard.html';
                 }
             } catch (error) {
-                console.error('Unexpected error:', error);
                 errorMessage.textContent = 'An unexpected error occurred';
-            }
-        });
-
-        // Check if user is already logged in
-        async function checkUser() {
-            const { data: { session }, error } = await supabaseClient.auth.getSession();
-            console.log('Current session:', session);
-            
-            if (session) {
-                console.log('User already logged in, redirecting...');
-                window.location.href = 'dashboard.html';
+                console.error('Login error:', error);
             }
         }
 
-        // Check user on page load
-        checkUser();
+        // Handle logout
+        async function handleLogout() {
+            try {
+                const { error } = await supabaseClient.auth.signOut();
+                if (error) throw error;
+                window.location.href = 'index.html';
+            } catch (error) {
+                console.error('Error logging out:', error);
+            }
+        }
+
+        // Check authentication status
+        async function checkAuth() {
+            const { data: { session } } = await supabaseClient.auth.getSession();
+            const loginForm = document.getElementById('loginForm');
+            const logoutBtn = document.getElementById('logoutBtn');
+
+            if (session) {
+                // User is logged in
+                loginForm.style.display = 'none';
+                logoutBtn.style.display = 'block';
+                // If on index page, redirect to dashboard
+                if (window.location.pathname.includes('index.html')) {
+                    window.location.href = 'dashboard.html';
+                }
+            } else {
+                // User is not logged in
+                loginForm.style.display = 'block';
+                logoutBtn.style.display = 'none';
+                // If on dashboard, redirect to login
+                if (window.location.pathname.includes('dashboard.html')) {
+                    window.location.href = 'index.html';
+                }
+            }
+        }
+
+        // Check auth status when page loads
+        checkAuth();
     </script>
 </body>
 </html>
